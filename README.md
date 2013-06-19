@@ -13,33 +13,30 @@ There are different ways to get the Gnucash app for Android; through the app sto
 
 ### App Store
 
+Gnucash for Android is now available in the Google Play Store
 <a href="http://play.google.com/store/apps/details?id=org.gnucash.android">
   <img alt="Android app on Google Play" src="http://developer.android.com/images/brand/en_generic_rgb_wo_60.png" />
 </a>
 
+### Eclipse
 
-## Building
+You can also build and install the Gnucash for Android application from source. This is of particular interest for those who want to contribute or those who wish to live on the bleeding edge. 
 
-The build requires [Maven](http://maven.apache.org/download.html)
-v3.0.3+ and the [Android SDK](http://developer.android.com/sdk/index.html)
-to be installed in your development environment. In addition you'll need to set
-the `ANDROID_HOME` environment variable to the location of your SDK:
+The Android SDK primarily supports Eclipse for development and consequently, all the subprojects in the GnucashMobile folder are Eclipse Android projects. In order to compile the application, you need to import the com_actionbarsherlock and GnucashMobile projects into your eclipse workspace. Then you can just invoke "Run as Android application" from eclipse in order to build and install the application on your Android device.
 
-    export ANDROID_HOME=/home/roberto/tools/android-sdk
+If you are interested in running the Robotium tests, also import the GnucashTest project into your workspace and run it as "Android JUnit Test".
 
-After satisfying those requirements, the build is pretty simple:
+### Maven
 
-* Run `mvn clean package` from the `app` directory to build the APK only
-* Run `mvn clean install` from the root directory to build the app and also run
-  the integration tests, this requires a connected Android device or running
-  emulator. (see this [blog post](http://goo.gl/TprMw) for details)
+Gnucash for Android also supports the Apache Maven build automation tool. 
+This method is more interesting if you do not want to download and install eclipse and the necessary Android plugins. It is especially interesting if you already have maven installed.
+There are a few steps you need in order to get up and running with maven. 
 
-You might find that your device doesn't let you install your build if you
-already have the version from the Android Market installed.  This is standard
-Android security as it it won't let you directly replace an app that's been
-signed with a different key.  Manually uninstall Gauges from your device and
-you will then be able to install your own built version.
-
+* Download and install [Maven 3.x](http://maven.apache.org/download.html) (**Note**: it is required mvaen 3.x, previous versions are not supported, you can follow the instructions on the website)
+* Clone the `gnucash-android` source using: `git clone git://github.com/codinguser/GnucashMobile.git`
+* Open a terminal in the `gnucash-android` folder and run `mvn clean install`
+(**Note**: If you also want to run the tests, see this [blog post](http://goo.gl/TprMw) for details )
+* To install the application on your phone, switch to the `gnucash-android` subfolder and run `mvn android:deploy`
 
 #Licence
 Gnucash for Android is free software; you can redistribute it and/or 
